@@ -1,7 +1,7 @@
 from PIL import Image, ImageDraw, ImageFont
 import os
 
-Folder = r"assets\vrchat"
+Folder = r"..\vrchat"
 MaxWidth = 1920
 MaxHeight = 1080
 Quality = 82

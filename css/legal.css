@@ -1,0 +1,45 @@
+.content {
+	margin: 70px auto;
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.box {
+	max-width: 900px;
+	margin: 30px auto;
+	padding: 15px 32px 15px 32px;
+	border-radius: 10px;
+	width: fit-content;
+	text-align: center;
+	background-color: var(--color-background);
+	box-shadow: 0 0 10px var(--color-main);
+}
+
+
+.license-details,
+.license-details * {
+	text-align: left;
+}
+
+.license-details {
+	display: none;
+}
+
+.license-details.is-open {
+	display: block;
+}
+
+
+/* Mobile View */
+@media (max-width: 768px) {
+	.box {
+		flex-direction: column;
+		align-items: center;
+		width: 100%;
+		max-width: 95%;
+		box-sizing: border-box;
+		text-align: center;
+	}
+}

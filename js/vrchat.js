@@ -1,44 +1,11 @@
-async function loadComponent(filePath, targetId, { content = {}, afterLoad } = {}) {
-	const response = await fetch(filePath);
-	if (!response.ok) throw new Error(`Could not load ${filePath} (${response.status})`);
-
-	const target = document.getElementById(targetId);
-	if (!target) throw new Error(`Could not find the component target #${targetId}`);
-
-	target.innerHTML = await response.text();
-
-	target.querySelectorAll("script").forEach((oldScript) => {
-		const script = document.createElement("script");
-		for (const attribute of oldScript.attributes) {
-			script.setAttribute(attribute.name, attribute.value);
-		}
-		script.textContent = oldScript.textContent;
-		oldScript.replaceWith(script);
-	});
-
-	for (const [selector, value] of Object.entries(content)) {
-		const element = target.querySelector(selector);
-		if (!element) throw new Error(`Could not find ${selector} inside ${filePath}`);
-		element.textContent = value;
-	}
-
-	afterLoad?.(target);
-	return target;
-}
-
-loadComponent("../loader.html", "loader-container")
-	.catch((error) => {
-		console.error("Could not load site loader", error);
-		document.getElementById("loader-container")?.remove();
-	});
-loadComponent("../header.html", "header", { content: { ".header-text": "Look at my Cool VRchat pictures hehe!" } }).catch(console.error);
-loadComponent("../footer.html", "footer").catch(console.error);
+loadComponent("/html/header.html", "header", { content: { ".header-text": "Look at my Cool VRchat pictures hehe!" } }).catch(console.error);
+loadComponent("/html/footer.html", "footer").catch(console.error);
 
 
 // Image Popup Tag
 document.addEventListener("DOMContentLoaded", () => {
 	document.querySelectorAll(".enlargeable").forEach((img) => {
-	img.style.cursor = "url(../assets/pointer.png), pointer";
+	img.style.cursor = "url(/assets/cursor/pointer.png), pointer";
 
 	img.addEventListener("click", () => {
 		const overlay = document.createElement("div");
@@ -60,9 +27,10 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
+
 // Gallery
 const Gallery = document.getElementById("gallery");
-const MaxImage = 139;
+const MaxImage = 144;
 const ImagePath = "../assets/vrchat/vrchat NUMBER.webp";
 
 for (let ImageNumber = MaxImage; ImageNumber >= 1; ImageNumber--) {

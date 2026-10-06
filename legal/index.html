@@ -5,212 +5,28 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>Mint's Webdump</title>
 	<meta name="description" content="Full of chaotic dragon raccoon energy!">
-	<link rel="icon" type="image/x-icon" href="../assets/pfp.webp">
+	<link rel="icon" type="image/x-icon" href="/assets/minty/pfp.webp">
+	<link rel="stylesheet" href="/css/main.css">
+	<link rel="stylesheet" href="/css/legal.css">
+	<script src="/js/main.js" defer></script>
+	<script src="/js/legal.js" defer></script>
 
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
-
-	<style>
-		/* Root Stuff */
-		:root {
-		--color-background: #111;
-		--color-background-alt: #424242;
-		--color-main: #addeb3;
-		--color-text: #addeb3;
-		--color-link: #58855C;
-		--color-accent: #0D3311;
-
-		--cursor: url(../assets/cursor.png), default;
-		--pointer: url(../assets/pointer.png), pointer;
-		}
-
-
-		/* Scrollbar */
-		::-webkit-scrollbar { width: 12px; }
-		::-webkit-scrollbar-track { background: var(--color-background); border-radius: 10px; }
-		::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #8fffb0, var(--color-main), #8fffb0); border: 2px solid var(--color-background); border-radius: 10px; box-shadow: 0 0 10px #8fffb0; }
-		::-webkit-scrollbar-thumb:hover { background: linear-gradient(180deg, #cfffda, var(--color-main), #cfffda); }
-		* { scrollbar-width: thin; scrollbar-color: var(--color-main) var(--color-background); }
-
-
-		/* Tags */
-		.no-select {
-		user-select: none;
-		}
-
-		.no-style-a a {
-		color: inherit;
-		text-decoration: none;
-		cursor: var(--cursor);
-		}
-
-
-		/* Base HTML */
-		body {
-		margin: 0;
-		padding: 0;
-		background: url("../assets/background.webp") no-repeat center center fixed;
-		background-size: cover;
-		font-family: "VT323", monospace;
-		font-size: 20px;
-		color: var(--color-text);
-		cursor: var(--cursor);
-		}
-
-		a {
-		color: var(--color-link);
-		text-decoration: underline;
-		cursor: var(--pointer);
-		}
-
-		b {
-		text-shadow: 0 0 5px #addeb3, 0 0 10px #addeb3;
-		}
-
-		p {
-		text-align: center;
-		color: var(--color-text);
-		}
-
-		h1 {
-		font-size: 2.3em;
-		font-weight: normal;
-		text-align: center;
-		text-shadow: 0 0 10px #addeb3, 0 0 20px #addeb3, 0 0 30px #addeb3;
-		}
-
-		h2 {
-		font-size: 1.5em;
-		font-weight: normal;
-		text-align: center;
-		text-shadow: 0 0 10px #addeb3, 0 0 20px #addeb3, 0 0 30px #addeb3;
-		}
-
-		.btn {
-		padding: 5px;
-		margin: 5px;
-		cursor: var(--pointer);
-		font-family: "VT323", monospace;
-		font-size: 20px;
-		color: var(--color-text);
-		background-color: var(--color-background);
-		border: 2px dashed var(--color-main);
-		border-radius: 10px;
-		}
-
-
-		/* Website */
-		.content {
-		margin: 70px auto;
-		flex: 1;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		}
-
-		.box {
-		max-width: 900px;
-		margin: 30px auto;
-		padding: 15px 32px 15px 32px;
-		border-radius: 10px;
-		width: fit-content;
-		text-align: center;
-		background-color: var(--color-background);
-		box-shadow: 0 0 10px var(--color-main);
-		}
-
-
-		.license-details,
-		.license-details * {
-		text-align: left;
-		}
-
-		.license-details {
-		display: none;
-		}
-
-		.license-details.is-open {
-		display: block;
-		}
-
-
-		/* Mobile View */
-		@media (max-width: 768px) {
-		body {
-		font-size: 18px;
-		margin: 0;
-		padding: 0 0px;
-		background: url("../assets/background2.webp") no-repeat center center fixed;
-		background-size: cover;
-		}
-
-		.box {
-		flex-direction: column;
-		align-items: center;
-		width: 100%;
-		max-width: 95%;
-		box-sizing: border-box;
-		text-align: center;
-		}
-		}
-	</style>
-
-	<script>
-		async function loadComponent(filePath, targetId, { content = {}, afterLoad } = {}) {
-			const response = await fetch(filePath);
-			if (!response.ok) throw new Error(`Could not load ${filePath} (${response.status})`);
-
-			const target = document.getElementById(targetId);
-			if (!target) throw new Error(`Could not find the component target #${targetId}`);
-
-			target.innerHTML = await response.text();
-
-			for (const [selector, value] of Object.entries(content)) {
-				const element = target.querySelector(selector);
-				if (!element) throw new Error(`Could not find ${selector} inside ${filePath}`);
-				element.textContent = value;
-			}
-
-			afterLoad?.(target);
-			return target;
-		}
-
-		loadComponent("loader.html", "loader-container")
-			.catch((error) => {
-				console.error("Could not load site loader", error);
-				document.getElementById("loader-container")?.remove();
-			});
-		loadComponent("../header.html", "header", {
-			content: { ".header-text": "Everything about my website and boring legal stuff!" }
-		}).catch(console.error);
-		loadComponent("../footer.html", "footer", {}).catch(console.error);
-
-		function toggleLicense() {
-			const details = document.getElementById("license-details");
-			const button = document.getElementById("license-toggle");
-			const isOpen = details.classList.toggle("is-open");
-			button.setAttribute("aria-expanded", isOpen);
-			button.textContent = isOpen ? "Show less" : "Show full license";
-		}
-	</script>
 </head>
 
-
-
 <body>
-	<div id="loader-container"></div>
-
 	<div id="header"></div>
 
-	<div class="box" id="about">
-		<h2>About</h2>
-		<p>
-			This website is a small personal project that I made just for fun, improving my web development skills and for friends, but everyone is welcome to explore it.
-		</p>
-	</div>
-
 	<div class="content">
+		<div class="box" id="about">
+			<h2>About</h2>
+			<p>
+				This website is a small personal project that I made just for fun, improving my web development skills and for friends, but everyone is welcome to explore it.
+			</p>
+		</div>
+
 		<div class="box" id="privacy">
 			<h2>Privacy Policy</h2>
 			<p>

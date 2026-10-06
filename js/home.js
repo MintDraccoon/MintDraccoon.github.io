@@ -1,39 +1,5 @@
-async function loadComponent(filePath, targetId, { content = {}, afterLoad } = {}) {
-	const response = await fetch(filePath);
-	if (!response.ok) throw new Error(`Could not load ${filePath} (${response.status})`);
-
-	const target = document.getElementById(targetId);
-	if (!target) throw new Error(`Could not find the component target #${targetId}`);
-
-	target.innerHTML = await response.text();
-
-	target.querySelectorAll("script").forEach((oldScript) => {
-		const script = document.createElement("script");
-		for (const attribute of oldScript.attributes) {
-			script.setAttribute(attribute.name, attribute.value);
-		}
-		script.textContent = oldScript.textContent;
-		oldScript.replaceWith(script);
-	});
-
-	for (const [selector, value] of Object.entries(content)) {
-		const element = target.querySelector(selector);
-		if (!element) throw new Error(`Could not find ${selector} inside ${filePath}`);
-		element.textContent = value;
-	}
-
-	afterLoad?.(target);
-	return target;
-}
-
-loadComponent("loader.html", "loader-container")
-	.catch((error) => {
-		console.error("Could not load site loader", error);
-		document.getElementById("loader-container")?.remove();
-	});
-loadComponent("header.html", "header", { afterLoad: (header) => { setUpHeaderPfpControls(header); } }).catch(console.error);
-loadComponent("footer.html", "footer").catch(console.error);
-
+loadComponent("/html/header.html", "header", { afterLoad: (header) => { setUpHeaderPfpControls(header); } }).catch(console.error);
+loadComponent("/html/footer.html", "footer").catch(console.error);
 
 // Box Wobble Toggle
 function boxWobbleToggle() {
@@ -52,10 +18,11 @@ function boxWobbleToggle() {
 }
 
 
+
 // Image Popup Tag
 document.addEventListener("DOMContentLoaded", () => {
 	document.querySelectorAll(".enlargeable").forEach((img) => {
-	img.style.cursor = "url(assets/pointer.png), pointer";
+	img.style.cursor = "url(/assets/cursor/pointer.png), pointer";
 
 	img.addEventListener("click", () => {
 		const overlay = document.createElement("div");
@@ -75,6 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	});
 	});
 });
+
 
 
 // Konami Code
@@ -97,7 +65,7 @@ function triggerRaccoonWalk() {
 	for (let index = 0; index < 20; index++) {
 		const size = 64 + Math.random() * 64;
 		const paw = Object.assign(document.createElement("img"), {
-			src: "assets/paw.png",
+			src: "/assets/paw.png",
 			className: "raccoon-paw"
 		});
 
@@ -109,10 +77,11 @@ function triggerRaccoonWalk() {
 	document.body.appendChild(container);
 	container.lastElementChild.addEventListener("animationend", () => container.remove(), { once: true });
 
-	const audio = new Audio("assets/audio/Raccoon Trill.mp3");
+	const audio = new Audio("/assets/audio/Raccoon Trill.mp3");
 	audio.volume = 0.3;
 	audio.play().catch(() => {});
 }
+
 
 
 // PFP
@@ -123,9 +92,9 @@ function setUpHeaderPfpControls(header) {
 
 	emoji1.addEventListener("click", () => {
 		if (pfpImg.src.includes("pfp.webp")) {
-			pfpImg.src = "assets/fototeta.webp";
+			pfpImg.src = "/assets/minty/fototeta.webp";
 		} else {
-			pfpImg.src = "assets/pfp.webp";
+			pfpImg.src = "/assets/minty/pfp.webp";
 		}
 	});
 
@@ -137,6 +106,7 @@ function setUpHeaderPfpControls(header) {
 		}
 	});
 }
+
 
 
 // Greeting
@@ -151,6 +121,7 @@ const greetings = [
 ];
 
 text.textContent = greetings.find(([limit]) => hour < limit)[1];
+
 
 
 // Raccoon Facts
@@ -188,6 +159,7 @@ const facts = [
 document.getElementById("raccoonFact").textContent = facts[new Date().getDate() % facts.length];
 
 
+
 // Raccoon Image
 const imageElement = document.getElementById("image-img");
 const imageText = document.querySelector(".image-box-subtext");
@@ -223,10 +195,11 @@ function nextImg() {
 		nextImageButton.disabled = false;
 	};
 
-	image.src = `assets/raccoon_images/${filename}`;
+	image.src = `/assets/raccoon_images/${filename}`;
 }
 
 window.addEventListener("DOMContentLoaded", nextImg);
+
 
 
 // IP Joke

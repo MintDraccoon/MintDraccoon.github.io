@@ -1,0 +1,210 @@
+/* Root Stuff */
+:root {
+	--color-background: #111;
+	--color-background-alt: #424242;
+	--color-main: #addeb3;
+	--color-text: #addeb3;
+	--color-link: #58855C;
+	--color-accent: #0D3311;
+
+	--cursor: url(/assets/cursor/cursor.png), default;
+	--pointer: url(/assets/cursor/pointer.png), pointer;
+}
+
+
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 12px; }
+::-webkit-scrollbar-track { background: var(--color-background); border-radius: 10px; }
+::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #8fffb0, var(--color-main), #8fffb0); border: 2px solid var(--color-background); border-radius: 10px; box-shadow: 0 0 10px #8fffb0; }
+::-webkit-scrollbar-thumb:hover { background: linear-gradient(180deg, #cfffda, var(--color-main), #cfffda); }
+* { scrollbar-width: thin; scrollbar-color: var(--color-main) var(--color-background); }
+
+
+
+/* Tags */
+.no-select {
+	user-select: none;
+}
+
+.no-style-a a {
+	color: inherit;
+	text-decoration: none;
+	cursor: var(--cursor);
+}
+
+.img-overlay {
+	position: fixed;
+	inset: 0;
+	background-color: rgba(0, 0, 0, 0.85);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 9999;
+}
+
+.img-popup {
+	max-width: 90%;
+	max-height: 90%;
+	border-radius: 12px;
+	box-shadow: 0 0 25px var(--color-main);
+	transition: transform 0.2s;
+}
+
+
+
+/* Base HTML */
+body {
+	margin: 0;
+	padding: 0;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	background: url("/assets/background/main_background.webp") no-repeat center center fixed;
+	background-size: cover;
+	font-family: "VT323", monospace;
+	font-size: 20px;
+	color: var(--color-text);
+	cursor: var(--cursor);
+}
+
+a {
+	color: var(--color-link);
+	text-decoration: underline;
+	cursor: var(--pointer);
+}
+
+b {
+	text-shadow: 0 0 5px #addeb3, 0 0 10px #addeb3;
+}
+
+p {
+	text-align: center;
+	color: var(--color-text);
+}
+
+h1 {
+	font-size: 2.3em;
+	font-weight: normal;
+	text-align: center;
+	text-shadow: 0 0 10px #addeb3, 0 0 20px #addeb3, 0 0 30px #addeb3;
+}
+
+h2 {
+	font-size: 1.5em;
+	font-weight: normal;
+	text-align: center;
+	text-shadow: 0 0 10px #addeb3, 0 0 20px #addeb3, 0 0 30px #addeb3;
+}
+
+.btn {
+	padding: 5px;
+	margin: 5px;
+	cursor: var(--pointer);
+	font-family: "VT323", monospace;
+	font-size: 20px;
+	color: var(--color-text);
+	background-color: var(--color-background);
+	border: 2px dashed var(--color-main);
+	border-radius: 10px;
+}
+
+
+
+/* Mobile View */
+@media (max-width: 768px) {
+	body {
+		font-size: 18px;
+		margin: 0;
+		padding: 0 0px;
+		background: url("/assets/background/phone_background.webp") no-repeat center center fixed;
+		background-size: cover;
+		}
+}
+
+
+
+/* Header */
+.site-header {
+	width: 100%;
+	padding: 5px 0 15px;
+	background-color: var(--color-background);
+	box-shadow: 0 10px 15px var(--color-main);
+}
+
+.header-title {
+	color: inherit;
+	text-decoration: none;
+	cursor: var(--pointer);
+}
+
+@keyframes hue-rotate-rainbow {
+	0% { filter: hue-rotate(0deg); }
+	100% { filter: hue-rotate(360deg); }
+}
+
+.rainbow-hover:hover {
+	cursor: var(--pointer);
+	animation: hue-rotate-rainbow 1s linear infinite;
+	transition: filter 0.5s ease;
+}
+
+.rainbow-hue {
+	animation: hue-rotate-rainbow 2s linear infinite;
+	transition: filter 0.5s ease;
+}
+
+
+
+/* Footer */
+.site-footer {
+	padding: 40px 0px 20px;
+	background-color: var(--color-background);
+	box-shadow: 0 -10px 15px var(--color-main);
+}
+
+.footer-text {
+	margin: 0px 0px;
+}
+
+.footer-links {
+	margin-top: 5px;
+	gap: 20px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.footer-legal {
+	margin-top: 40px;
+	gap: 10px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	font-size: 0.8em;
+	opacity: 0.7;
+}
+
+.footer-copyright {
+	margin-top: 5px;
+	font-size: 0.9em;
+	opacity: 0.7;
+}
+
+/* 404 */
+.content {
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.box {
+	padding: 15px 32px 15px 32px;
+	border-radius: 10px;
+	width: fit-content;
+	text-align: center;
+	background-color: var(--color-background);
+	box-shadow: 0 0 10px var(--color-main);
+}
