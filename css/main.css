@@ -54,6 +54,11 @@
 
 
 /* Base HTML */
+html,
+body {
+	background-color: var(--color-background);
+}
+
 body {
 	margin: 0;
 	padding: 0;
