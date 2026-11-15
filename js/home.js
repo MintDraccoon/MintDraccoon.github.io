@@ -3,12 +3,7 @@ import { raccoonImages } from './raccoon_images.js';
 
 initLoader();
 
-loadComponent("/html/header.html", "header", {
-	afterLoad: (header) => {
-		setUpHeaderPfpControls(header);
-	}
-}).catch(console.error);
-
+loadComponent("/html/header.html", "header", {afterLoad: (header) => {setUpHeaderPfpControls(header);}}).catch(console.error);
 loadComponent("/html/footer.html", "footer").catch(console.error);
 
 
