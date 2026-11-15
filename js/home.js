@@ -1,13 +1,13 @@
-import { initLoader, loadComponent } from './main.js';
+import { initLoader, loadComponent, initEnlargeable } from './main.js';
 import { raccoonImages } from './raccoon_images.js';
 
 initLoader();
+initEnlargeable();
 
 await Promise.all([
-	loadComponent("/html/header.html", "header", {afterLoad: (header) => {setUpHeaderPfpControls(header);}}),
-	loadComponent("/html/footer.html", "footer")
+	loadComponent("/html/header.html", "header", { afterLoad: (header) => { setUpHeaderPfpControls(header); } }),
+	loadComponent("/html/footer.html", "footer"),
 ]).catch(console.error);
-
 
 
 // Header PFP Controls
@@ -232,7 +232,7 @@ if (ipElement) {
 
 
 // Initializing Buttons
-document.addEventListener("DOMContentLoaded", () => {
+function initializeButtons() {
 	const wobbleBtn = document.getElementById("wobble-btn");
 	if (wobbleBtn) {
 		wobbleBtn.addEventListener("click", boxWobbleToggle);
@@ -246,4 +246,6 @@ document.addEventListener("DOMContentLoaded", () => {
 	document.querySelectorAll(".enlargeable").forEach((img) => {
 		img.style.cursor = "url(/assets/cursor/pointer.png), pointer";
 	});
-});
+}
+
+initializeButtons();

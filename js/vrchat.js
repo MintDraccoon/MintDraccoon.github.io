@@ -1,6 +1,7 @@
-import { initLoader, loadComponent } from './main.js';
+import { initLoader, loadComponent, initEnlargeable } from './main.js';
 
 initLoader();
+initEnlargeable();
 
 await Promise.all([
 	loadComponent("/html/header.html", "header", { content: { ".header-text": "Look at my Cool VRchat pictures hehe!" }}),
@@ -89,8 +90,10 @@ LoadImages();
 
 
 // Initializing Buttons
-document.addEventListener("DOMContentLoaded", () => {
+function initializeButtons() {
 	document.querySelectorAll(".enlargeable").forEach((img) => {
 		img.style.cursor = "url(/assets/cursor/pointer.png), pointer";
 	});
-});
+}
+
+initializeButtons();

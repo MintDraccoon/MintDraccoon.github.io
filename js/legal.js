@@ -21,9 +21,11 @@ function toggleLicense() {
 
 
 // Initializing Buttons
-document.addEventListener("DOMContentLoaded", () => {
-    const licenseButton = document.getElementById("license-toggle");
+function initializeButtons() {
+	const licenseButton = document.getElementById("license-toggle");
     if (licenseButton) {
         licenseButton.addEventListener("click", toggleLicense);
     }
-});
+}
+
+initializeButtons();

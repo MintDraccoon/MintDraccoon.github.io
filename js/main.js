@@ -52,22 +52,24 @@ export async function loadComponent(filePath, targetId, { content = {}, afterLoa
 
 
 // Enlargeable
-document.addEventListener("click", (event) => {
-	const img = event.target.closest(".enlargeable");
-	if (!img) return;
+export function initEnlargeable() {
+	document.addEventListener("click", (event) => {
+		const img = event.target.closest(".enlargeable");
+		if (!img) return;
 
-	const overlay = document.createElement("div");
-	overlay.classList.add("img-overlay");
+		const overlay = document.createElement("div");
+		overlay.classList.add("img-overlay");
 
-	const bigImg = document.createElement("img");
-	bigImg.src = img.src;
-	bigImg.alt = img.alt;
-	bigImg.classList.add("img-popup");
+		const bigImg = document.createElement("img");
+		bigImg.src = img.src;
+		bigImg.alt = img.alt;
+		bigImg.classList.add("img-popup");
 
-	overlay.appendChild(bigImg);
-	document.body.appendChild(overlay);
+		overlay.appendChild(bigImg);
+		document.body.appendChild(overlay);
 
-	overlay.addEventListener("click", () => {
-		overlay.remove();
+		overlay.addEventListener("click", () => {
+			overlay.remove();
+		});
 	});
-});
+}
