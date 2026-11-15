@@ -50,14 +50,17 @@
 
 .gallery {
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+	grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
 	gap: 20px;
 	padding: 20px;
+	width: 100%;
+	box-sizing: border-box;
 }
 
 .gallery-item {
 	position: relative;
 	width: 100%;
+	min-width: 0;
 	aspect-ratio: 16 / 9;
 	background-color: var(--color-background);
 	border-radius: 16px;
@@ -163,9 +166,9 @@
 
 	.gallery {
 		display: grid;
-		grid-template-columns: repeat(1, minmax(100px, 1fr));
-		gap: 20px;
-		padding: 20px;
+		grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+		gap: 12px;
+		padding: 12px;
 	}
 
 	.divider {
