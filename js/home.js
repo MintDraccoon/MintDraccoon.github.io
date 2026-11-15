@@ -39,14 +39,12 @@ function boxWobbleToggle() {
 	const button = document.getElementById("wobble-btn");
 
 	boxes.forEach(box => {
-		if (box.style.animation === "none") {
-			box.style.animation = "";
-			button.textContent = "Disable Wobble";
-		} else {
-			box.style.animation = "none";
-			button.textContent = "Enable Wobble";
-		}
+		box.classList.toggle("no-wobble");
 	});
+
+	const Disabled = document.querySelector(".box.no-wobble");
+
+	button.textContent = Disabled ? "Enable Wobble" : "Disable Wobble";
 }
 
 
