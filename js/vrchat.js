@@ -2,8 +2,11 @@ import { initLoader, loadComponent } from './main.js';
 
 initLoader();
 
-loadComponent("/html/header.html", "header", { content: { ".header-text": "Look at my Cool VRchat pictures hehe!" } }).catch(console.error);
-loadComponent("/html/footer.html", "footer").catch(console.error);
+await Promise.all([
+	loadComponent("/html/header.html", "header", { content: { ".header-text": "Look at my Cool VRchat pictures hehe!" }}),
+	loadComponent("/html/footer.html", "footer")
+]).catch(console.error);
+
 
 
 // Image Popup Tag

@@ -2,8 +2,11 @@ import { initLoader, loadComponent } from './main.js';
 
 initLoader();
 
-loadComponent("/html/header.html", "header", { content: { ".header-text": "Everything about my website and boring legal stuff!" } }).catch(console.error);
-loadComponent("/html/footer.html", "footer", {}).catch(console.error);
+await Promise.all([
+	loadComponent("/html/header.html", "header", {content: { ".header-text": "Everything about my website and boring legal stuff!" }}),
+	loadComponent("/html/footer.html", "footer")
+]).catch(console.error);
+
 
 
 // Expand License
