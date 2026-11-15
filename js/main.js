@@ -1,4 +1,31 @@
-async function loadComponent(filePath, targetId, { content = {}, afterLoad } = {}) {
+export function initLoader() {
+	const loader = document.getElementById("loader");
+	if (!loader) return;
+
+	const hideLoader = () => {
+		if (loader.classList.contains("fade-out")) return;
+		loader.classList.add("fade-out");
+		loader.addEventListener("transitionend", () => {
+			loader.remove();
+		}, { once: true });
+	};
+
+	const safetyTimer = setTimeout(hideLoader, 1500);
+
+	if (document.readyState === "complete") {
+		clearTimeout(safetyTimer);
+		hideLoader();
+	} else {
+		window.addEventListener("load", () => {
+			clearTimeout(safetyTimer);
+			hideLoader();
+		}, { once: true });
+	}
+}
+
+
+
+export async function loadComponent(filePath, targetId, { content = {}, afterLoad } = {}) {
 	const response = await fetch(filePath);
 	if (!response.ok) throw new Error(`Could not load ${filePath} (${response.status})`);
 
@@ -7,10 +34,15 @@ async function loadComponent(filePath, targetId, { content = {}, afterLoad } = {
 
 	target.innerHTML = await response.text();
 
-	for (const [selector, value] of Object.entries(content)) {
+	for (const [selector, data] of Object.entries(content)) {
 		const element = target.querySelector(selector);
-		if (!element) throw new Error(`Could not find ${selector} inside ${filePath}`);
-		element.textContent = value;
+		if (!element) throw new Error(`Could not find ${selector} inside${filePath}`);
+
+		if (typeof data === "object" && data.html) {
+			element.innerHTML = data.html;
+		} else {
+			element.textContent = data;
+		}
 	}
 
 	afterLoad?.(target);

@@ -1,4 +1,4 @@
-const raccoonImages = [
+export const raccoonImages = [
 	"mint_SoooCute.webp",
 	"mint_ThatsMe.webp",
 	"pexels_10160969.webp",

@@ -1,4 +1,8 @@
-loadComponent("/html/header.html", "header", {content: { ".header-text": "Everything about my website and boring legal stuff!" }}).catch(console.error);
+import { initLoader, loadComponent } from './main.js';
+
+initLoader();
+
+loadComponent("/html/header.html", "header", { content: { ".header-text": "Everything about my website and boring legal stuff!" } }).catch(console.error);
 loadComponent("/html/footer.html", "footer", {}).catch(console.error);
 
 function toggleLicense() {

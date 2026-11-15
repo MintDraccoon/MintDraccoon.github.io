@@ -8,13 +8,7 @@
 	<link rel="icon" type="image/x-icon" href="/assets/minty/pfp.webp">
 	<link rel="stylesheet" href="/css/main.css">
 	<link rel="stylesheet" href="/css/home.css">
-	<script src="/js/main.js" defer></script>
-	<script src="/js/home.js" defer></script>
-	<script src="/js/raccoon_images.js" defer></script>
-
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+	<script type="module" src="/js/home.js"></script>
 
 	<meta property="og:title" content="Mint's Webdump 🦝🐲"/>
 	<meta property="og:description" content="Full of chaotic dragon raccoon energy!"/>
@@ -25,10 +19,15 @@
 </head>
 
 <body>
+	<div class="loader no-select" id="loader" role="status" aria-live="polite">
+		<div class="throbber"></div>
+		<h2>Loading Webdump...</h2>
+	</div>
+
 	<div id="header"></div>
 
 	<div class="box-wobble-toggle" id="box-wobble-toggle">
-		<button class="btn" onclick="boxWobbleToggle()">Disable Wobble</button>
+		<button class="btn" id="wobble-btn">Disable Wobble</button>
 	</div>
 
 	<div class="content">
@@ -53,21 +52,21 @@
 
 		<div class="fun-fact-box box">
 			<h2>🦝 Raccoon Fun Fact of the Day</h2>
-			<p id="raccoonFact" class="fun-fact">Loading Fact...</p>
+			<p class="fun-fact" id="raccoonFact">Loading Fact...</p>
 		</div>
 
 		<div class="image-box box">
 			<h2>🎨 Random Raccoon Picture</h2>
 			<div class="image-wrapper no-select">
-				<div id="image-loader" class="image-loading">
+				<div class="image-loading" id="image-loader">
 					<div class="image-spinner"></div>
 				</div>
 
-				<img id="image-img" class="enlargeable" alt="A fun raccoon image appears here!">
+				<img class="enlargeable" id="image-img" alt="A fun raccoon image appears here!">
 			</div>
 
 			<div class="image-box-subtext"><sup>Click the pic for a closer look!</sup></div>
-			<button class="btn" onclick="nextImg()">Show another!</button>
+			<button class="btn" id="next-img-btn">Show another!</button>
 		</div>
 
 		<div class="ip-box box">
