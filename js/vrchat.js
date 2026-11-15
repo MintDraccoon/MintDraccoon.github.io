@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Gallery
 const Gallery = document.getElementById("gallery");
-const MaxImage = 144;
+const MaxImage = 156;
 const ImagePath = "../assets/vrchat/vrchat NUMBER.webp";
 
 for (let ImageNumber = MaxImage; ImageNumber >= 1; ImageNumber--) {
