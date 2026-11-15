@@ -4,7 +4,7 @@ import os
 Folder = r"..\vrchat"
 MaxWidth = 1920
 MaxHeight = 1080
-Quality = 82
+Quality = 75
 
 PngFiles = [
 	File for File in os.listdir(Folder)
