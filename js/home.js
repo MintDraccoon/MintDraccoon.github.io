@@ -35,17 +35,16 @@ function setUpHeaderPfpControls(header) {
 
 // Box Wobble Toggle
 function boxWobbleToggle() {
-	const boxes = document.querySelectorAll(".box");
-	const button = document.getElementById("wobble-btn");
+	const Button = document.getElementById("wobble-btn");
 
-	boxes.forEach(box => {
-		box.classList.toggle("no-wobble");
-	});
+	if (!Button) return;
 
-	const Disabled = document.querySelector(".box.no-wobble");
+	const Disabled = document.body.classList.toggle("no-wobble");
 
-	button.textContent = Disabled ? "Enable Wobble" : "Disable Wobble";
+	Button.textContent = Disabled ? "Enable Wobble" : "Disable Wobble";
 }
+
+document.getElementById("wobble-btn")?.addEventListener("click", boxWobbleToggle);
 
 
 

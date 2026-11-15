@@ -60,15 +60,15 @@
 .box:nth-child(9) { animation-delay: -1s; }
 .box:nth-child(10) { animation-delay: -2.4s; }
 
+body.no-wobble .box {
+	animation: none !important;
+}
+
 .box-wobble-toggle {
 	position: fixed;
 	bottom: 0;
 	right: 0;
 	z-index: 99997;
-}
-
-.box.no-wobble {
-	animation: none !important;
 }
 
 
