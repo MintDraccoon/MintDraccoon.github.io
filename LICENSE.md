@@ -24,8 +24,6 @@ Any use outside the permissions granted by this license requires prior written p
 ## 3. Original Assets
 The following assets are original works created by or belonging to MintDraccoon and are not licensed for reuse:
 - Profile pictures (PFPs)
-- Website backgrounds
-- Custom cursors
 - Other original visual assets created by MintDraccoon
 
 These assets may not be:
