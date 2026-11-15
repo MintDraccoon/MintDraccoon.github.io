@@ -48,3 +48,26 @@ export async function loadComponent(filePath, targetId, { content = {}, afterLoa
 	afterLoad?.(target);
 	return target;
 }
+
+
+
+// Enlargeable
+document.addEventListener("click", (event) => {
+	const img = event.target.closest(".enlargeable");
+	if (!img) return;
+
+	const overlay = document.createElement("div");
+	overlay.classList.add("img-overlay");
+
+	const bigImg = document.createElement("img");
+	bigImg.src = img.src;
+	bigImg.alt = img.alt;
+	bigImg.classList.add("img-popup");
+
+	overlay.appendChild(bigImg);
+	document.body.appendChild(overlay);
+
+	overlay.addEventListener("click", () => {
+		overlay.remove();
+	});
+});

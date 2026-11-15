@@ -9,32 +9,6 @@ await Promise.all([
 
 
 
-// Image Popup Tag
-document.addEventListener("DOMContentLoaded", () => {
-	document.querySelectorAll(".enlargeable").forEach((img) => {
-	img.style.cursor = "url(/assets/cursor/pointer.png), pointer";
-
-	img.addEventListener("click", () => {
-		const overlay = document.createElement("div");
-		overlay.classList.add("img-overlay");
-
-		const bigImg = document.createElement("img");
-		bigImg.src = img.src;
-		bigImg.alt = img.alt;
-		bigImg.classList.add("img-popup");
-
-		overlay.appendChild(bigImg);
-		document.body.appendChild(overlay);
-
-		overlay.addEventListener("click", () => {
-		overlay.remove();
-		});
-	});
-	});
-});
-
-
-
 // Gallery
 const Gallery = document.getElementById("gallery");
 const MaxImage = 156;
@@ -111,3 +85,12 @@ async function LoadImages() {
 }
 
 LoadImages();
+
+
+
+// Initializing Buttons
+document.addEventListener("DOMContentLoaded", () => {
+	document.querySelectorAll(".enlargeable").forEach((img) => {
+		img.style.cursor = "url(/assets/cursor/pointer.png), pointer";
+	});
+});
