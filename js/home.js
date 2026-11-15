@@ -65,7 +65,7 @@ function triggerRaccoonWalk() {
 	for (let index = 0; index < 20; index++) {
 		const size = 64 + Math.random() * 64;
 		const paw = Object.assign(document.createElement("img"), {
-			src: "/assets/paw.png",
+			src: "/assets/cursor/paw.png",
 			className: "raccoon-paw"
 		});
 
@@ -77,7 +77,7 @@ function triggerRaccoonWalk() {
 	document.body.appendChild(container);
 	container.lastElementChild.addEventListener("animationend", () => container.remove(), { once: true });
 
-	const audio = new Audio("/assets/audio/Raccoon Trill.mp3");
+	const audio = new Audio("/assets/audio/Raccoon_Trill.mp3");
 	audio.volume = 0.3;
 	audio.play().catch(() => {});
 }
