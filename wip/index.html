@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<meta name="description" content="Full of chaotic Draccoon energy!">
+	<title>Mint's Webdump</title>
+	<link rel="icon" type="image/x-icon" href="/assets/minty/pfp.webp">
+	<link rel="preload" href="/assets/font/VT323-Regular.woff2" as="font" type="font/woff2" crossorigin>
+	<link rel="stylesheet" href="/css/main.css">
+	<link rel="stylesheet" href="/css/wip.css">
+	<script type="module" src="/js/wip.js"></script>
+
+	<meta property="og:title" content="Mint's Webdump 🦝🐲"/>
+	<meta property="og:description" content="Full of chaotic Draccoon energy!"/>
+	<meta property="og:type" content="website"/>
+	<meta property="og:url" content="https://www.mintypaws.de/"/>
+	<meta property="og:image" content="https://www.mintypaws.de/assets/minty/pfp.webp"/>
+	<meta property="theme-color" content="#ADEBB3"/>
+</head>
+
+<body>
+	<div class="loader no-select" id="loader" role="status" aria-live="polite">
+		<div class="throbber"></div>
+		<h2>Loading Webdump...</h2>
+	</div>
+
+	<div id="background">
+		<div class="plain"></div>
+		<div class="day">
+			<img class="sun" src="/assets/backgrounds/day/sun.webp">
+			<img class="clouds" src="/assets/backgrounds/day/clouds.webp">
+			<img class="mountains" src="/assets/backgrounds/day/mountains.webp">
+			<img class="trees-back" src="/assets/backgrounds/day/trees_back.webp">
+			<img class="trees-front" src="/assets/backgrounds/day/trees_front.webp">
+			<img class="butterflies" src="/assets/backgrounds/day/butterflies.webp">
+			<img class="oc" src="/assets/backgrounds/day/oc.webp">
+		</div>
+
+		<div class="night">
+			<img class="moon" src="/assets/backgrounds/night/moon.webp">
+			<img class="stars" src="/assets/backgrounds/night/stars.webp">
+			<img class="mountains" src="/assets/backgrounds/night/mountains.webp">
+			<img class="trees-back" src="/assets/backgrounds/night/trees_back.webp">
+			<img class="trees-front" src="/assets/backgrounds/night/trees_front.webp">
+			<img class="fireflies" src="/assets/backgrounds/night/fireflies.webp">
+			<img class="oc" src="/assets/backgrounds/night/oc.webp">
+		</div>
+	</div>
+
+	<div class="box-wobble-toggle">
+		<button class="btn" id="wobble-btn" type="button">Disable Wobble</button>
+
+		<button class="btn" id="theme-toggle">Toggle Theme</button>
+	</div>
+
+	<div id="header"></div>
+
+	<div class="content">
+		<div class="about-box box">
+			<img src="/assets/minty/pfp.webp" class="enlargeable no-select" alt="Profile Picture">
+			<div class="about-text">
+				<h2>/// SUBJECT_13-9-14-20.log</h2>
+				<p>
+					<b>Codename:</b> M.I.N.T - Multistage Interference Navigation Test<br>
+					<b>Species:</b> Draccoon (dragon / raccoon hybrid).<br>
+					<b>Threat Level:</b> Non-hostile / unpredictable<br>
+					<b>Appearance:</b> Mint-green markings, Curved horns, Large tail, Distorted wing structures.<br>
+					<b>Behavior:</b> Observational, curiosity-driven. Attracted to luminous objects.<br>
+					<b>Location:</b> Den-like structure. Environmental stability not confirmed.<br>
+				</p>
+			</div>
+		</div>
+
+		<div class="greeting-box box">
+			<h2 id="greeting-text">Loading Greeting...</h2>
+		</div>
+
+		<div class="fun-fact-box box">
+			<h2>🦝 Raccoon Fun Fact of the Day</h2>
+			<p class="fun-fact" id="raccoonFact">Loading Fact...</p>
+		</div>
+
+		<div class="image-box box">
+			<h2>🎨 Random Raccoon Picture</h2>
+			<div class="image-wrapper no-select">
+				<div class="image-loading" id="image-loader">
+					<div class="image-spinner"></div>
+				</div>
+
+				<img class="enlargeable" id="image-img" alt="A fun raccoon image appears here!">
+			</div>
+
+			<div class="image-box-subtext"><sup>Click the pic for a closer look!</sup></div>
+			<button class="btn" id="next-img-btn">Show another!</button>
+		</div>
+
+		<div class="ip-box box">
+			<h2>👀 Look, I stole your IP Adress</h2>
+			<div class="ip-address" id="ip">Stealing IP...</div>
+			<div class="ip-box-subtext"><sup>Stole your fridge... for more information visit <a href="https://www.youtube.com/watch?v=xvFZjo5PgG0" target="_blank" title="Very Informative!">here</a></sup></div>
+		</div>
+
+		<div class="vrchat-box box">
+		<h2>🌐 Step into my VRChat world</h2>
+		<div class="vrchat-content">
+			<div class="vrchat-text">
+				<p>See all of my VRChat Pictures!<br>Click below to visit the gallery.</p>
+				<a href="/vrchat" class="btn">📷 Open VRChat Gallery</a>
+			</div>
+			<img src="/assets/vrchat/vrchat 151.webp" alt="VRChat Preview" class="enlargeable vrchat-img no-select">
+		</div>
+		</div>
+	</div>
+
+	<div id="footer"></div>
+</body>
+</html>

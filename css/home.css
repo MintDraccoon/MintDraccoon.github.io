@@ -1,30 +1,3 @@
-.raccoon-paws {
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	pointer-events: none;
-	overflow: hidden;
-	z-index: 99996;
-}
-
-.raccoon-paw {
-	position: absolute;
-	width: 128px;
-	height: 128px;
-	opacity: 0;
-	transform: scale(0.5) rotate(0deg);
-	animation: pawWalk 1.5s ease-out forwards;
-}
-
-@keyframes pawWalk {
-	0% {opacity: 0; transform: scale(0.5) rotate(0deg); filter: blur(2px);}
-	30% {opacity: 1; transform: scale(1) rotate(10deg); filter: blur(0);}
-	100% {opacity: 0; transform: translateY(50vh) rotate(45deg); filter: blur(3px);}
-}
-
-
 .content {
 	margin: 70px auto;
 	flex: 1;
@@ -91,6 +64,7 @@ body.no-wobble .box {
 }
 
 
+
 .image-box img {
 	max-height: 400px;
 	max-width: 600px;
@@ -138,12 +112,14 @@ body.no-wobble .box {
 }
 
 
+
 .ip-address {
 	font-size: 24px;
 	font-weight: bold;
 	border-radius: 10px;
 	background-color: var(--color-background-alt);
 }
+
 
 
 .vrchat-content {

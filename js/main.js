@@ -1,3 +1,4 @@
+// Loader
 export function initLoader() {
 	const loader = document.getElementById("loader");
 	if (!loader) return;
@@ -25,6 +26,7 @@ export function initLoader() {
 
 
 
+// Load Components
 export async function loadComponent(filePath, targetId, { content = {}, afterLoad } = {}) {
 	const response = await fetch(filePath);
 	if (!response.ok) throw new Error(`Could not load ${filePath} (${response.status})`);

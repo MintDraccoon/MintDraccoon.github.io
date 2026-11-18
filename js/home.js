@@ -1,5 +1,5 @@
 import { initLoader, loadComponent, initEnlargeable } from './main.js';
-import { raccoonImages } from './raccoon_images.js';
+import { raccoons } from './raccoons.js';
 
 initLoader();
 initEnlargeable();
@@ -8,6 +8,7 @@ await Promise.all([
 	loadComponent("/html/header.html", "header", { afterLoad: (header) => { setUpHeaderPfpControls(header); } }),
 	loadComponent("/html/footer.html", "footer"),
 ]).catch(console.error);
+
 
 
 // Header PFP Controls
@@ -45,45 +46,6 @@ function boxWobbleToggle() {
 }
 
 document.getElementById("wobble-btn")?.addEventListener("click", boxWobbleToggle);
-
-
-
-// Konami Code
-const KONAMI_CODE = "ArrowUp ArrowUp ArrowDown ArrowDown ArrowLeft ArrowRight ArrowLeft ArrowRight b a".split(" ");
-let konamiIndex = 0;
-
-document.addEventListener("keydown", ({ key }) => {
-	konamiIndex = key === KONAMI_CODE[konamiIndex] ? konamiIndex + 1 : key === KONAMI_CODE[0] ? 1 : 0;
-	if (konamiIndex === KONAMI_CODE.length) {
-		triggerRaccoonWalk();
-		konamiIndex = 0;
-	}
-});
-
-function triggerRaccoonWalk() {
-	const container = document.createElement("div");
-	const paws = document.createDocumentFragment();
-
-	container.className = "raccoon-paws";
-	for (let index = 0; index < 20; index++) {
-		const size = 64 + Math.random() * 64;
-		const paw = Object.assign(document.createElement("img"), {
-			src: "/assets/cursor/paw.png",
-			className: "raccoon-paw"
-		});
-
-		paw.style.cssText = `width:${size}px;height:${size}px;left:${Math.random() * 100}vw;top:${Math.random() * 100}vh;animation-delay:${index * 0.3}s`;
-		paws.appendChild(paw);
-	}
-
-	container.appendChild(paws);
-	document.body.appendChild(container);
-	container.lastElementChild.addEventListener("animationend", () => container.remove(), { once: true });
-
-	const audio = new Audio("/assets/audio/Raccoon_Trill.mp3");
-	audio.volume = 0.3;
-	audio.play().catch(() => {});
-}
 
 
 
@@ -141,7 +103,7 @@ if (factElement) {
 
 
 
-// Raccoon Image
+// Raccoons
 const imageElement = document.getElementById("image-img");
 const imageText = document.querySelector(".image-box-subtext");
 const imageLoader = document.getElementById("image-loader");
@@ -155,7 +117,7 @@ function getImageInfo(filename) {
 function nextImg() {
 	if (!imageElement || !imageLoader || !nextImageButton) return;
 
-	const filename = raccoonImages[Math.floor(Math.random() * raccoonImages.length)];
+	const filename = raccoons[Math.floor(Math.random() * raccoons.length)];
 	const { platform, id } = getImageInfo(filename);
 	const image = new Image();
 
@@ -178,7 +140,7 @@ function nextImg() {
 		nextImageButton.disabled = false;
 	};
 
-	image.src = `/assets/raccoon_images/${filename}`;
+	image.src = `/assets/raccoons/${filename}`;
 }
 
 

@@ -1,0 +1,217 @@
+#background {
+	position: fixed;
+	inset: 0;
+	overflow: hidden;
+	pointer-events: none;
+	z-index: -1;
+}
+
+#background > div {
+	position: absolute;
+	inset: 0;
+	transition: opacity 1.2s ease;
+}
+
+#background .day,
+#background .night {
+	opacity: 0;
+}
+
+#background.day-mode .day,
+#background.night-mode .night {
+	opacity: 1;
+}
+
+#background img {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: center bottom;
+}
+
+.plain {
+	background-color: skyblue;
+	z-index: -2;
+	transition: background-color 1.4s ease;
+}
+
+.plain.night {
+	background-color: midnightblue;
+}
+
+
+
+html,
+body {
+	background: none !important;
+	background-color: none !important;
+}
+
+
+
+.content {
+	margin: 70px auto;
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.box {
+	margin: 30px auto;
+	padding: 15px 32px 15px 32px;
+	border-radius: 10px;
+	width: fit-content;
+	text-align: center;
+	background-color: var(--color-background);
+	box-shadow: 0 0 10px var(--color-main);
+	animation: box-wobble 5s ease-in-out infinite;
+}
+
+@keyframes box-wobble {
+	0%, 100% { transform: rotate(-0.3deg) translateY(0); }
+	50% { transform: rotate(0.3deg) translateY(-3px); }
+}
+
+.box:nth-child(1) { animation-delay: -0.7s; }
+.box:nth-child(2) { animation-delay: -2.1s; }
+.box:nth-child(3) { animation-delay: -3s; }
+.box:nth-child(4) { animation-delay: -1.4s; }
+.box:nth-child(5) { animation-delay: -2.7s; }
+.box:nth-child(6) { animation-delay: -0.2s; }
+.box:nth-child(7) { animation-delay: -1.8s; }
+.box:nth-child(8) { animation-delay: -3.3s; }
+.box:nth-child(9) { animation-delay: -1s; }
+.box:nth-child(10) { animation-delay: -2.4s; }
+
+body.no-wobble .box {
+	animation: none !important;
+}
+
+.box-wobble-toggle {
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	z-index: 99997;
+}
+
+
+
+.about-box {
+	display: flex;
+	gap: 32px;
+}
+
+.about-box img {
+	margin: auto;
+	width: 200px;
+	height: 200px;
+	border-radius: 50%;
+	border: 2px dashed var(--color-main);
+}
+
+.about-box p {
+	text-align: left;
+}
+
+
+
+.image-box img {
+	max-height: 400px;
+	max-width: 600px;
+	border-radius: 10px;
+	border: 2px dashed var(--color-main);
+}
+
+.image-wrapper {
+	width: 600px;
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.image-loading {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	display: none;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	background-color: rgba(17, 17, 17, 0.8);
+	border-radius: 10px;
+	z-index: 69;
+	}
+
+.image-spinner {
+	width: 40px;
+	height: 40px;
+	border: 4px solid var(--color-background-alt);
+	border-top: 6px solid var(--color-text);
+	border-radius: 50%;
+	animation: spin 1s linear infinite;
+	margin-bottom: 8px;
+}
+
+@keyframes spin {to { transform: rotate(360deg); }}
+
+#image-img {
+	transition: opacity 0.3s ease;
+}
+
+
+
+.ip-address {
+	font-size: 24px;
+	font-weight: bold;
+	border-radius: 10px;
+	background-color: var(--color-background-alt);
+}
+
+
+
+.vrchat-content {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+	gap: 32px;
+}
+
+.vrchat-text {
+	max-width: 300px;
+	margin-bottom: 48px;
+}
+
+.vrchat-img {
+	max-width: 250px;
+	border-radius: 10px;
+	box-shadow: 0 0 15px var(--color-main);
+}
+
+
+
+/* Mobile View */
+@media (max-width: 768px) {
+.box {
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+	max-width: 95%;
+	box-sizing: border-box;
+	text-align: center;
+}
+
+.about-box img,
+.image-box img,
+.vrchat-img {
+	width: 100%;
+	max-width: 300px;
+	height: auto;
+}
+}
