@@ -34,23 +34,8 @@ function setUpHeaderPfpControls(header) {
 
 
 
-// Box Wobble Toggle
-function boxWobbleToggle() {
-	const Button = document.getElementById("wobble-btn");
-
-	if (!Button) return;
-
-	const Disabled = document.body.classList.toggle("no-wobble");
-
-	Button.textContent = Disabled ? "Enable Wobble" : "Disable Wobble";
-}
-
-document.getElementById("wobble-btn")?.addEventListener("click", boxWobbleToggle);
-
-
-
 // Greeting
-const greetingText = document.getElementById("greeting-text");
+const greetingText = document.getElementById("greeting");
 if (greetingText) {
 	const hour = new Date().getHours();
 	const greetings = [

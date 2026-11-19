@@ -1,25 +1,31 @@
 // Loader
 export function initLoader() {
-	const loader = document.getElementById("loader");
-	if (!loader) return;
+	const Loader = document.getElementById("loader");
+	if (!Loader) return;
 
-	const hideLoader = () => {
-		if (loader.classList.contains("fade-out")) return;
-		loader.classList.add("fade-out");
-		loader.addEventListener("transitionend", () => {
-			loader.remove();
-		}, { once: true });
+	let IsHidden = false;
+
+	const RemoveLoader = () => Loader.remove();
+
+	const HideLoader = () => {
+		if (IsHidden) return;
+		IsHidden = true;
+
+		Loader.classList.add("fade-out");
+		Loader.addEventListener("transitionend", RemoveLoader, { once: true });
+
+		setTimeout(RemoveLoader, 1500);
 	};
 
-	const safetyTimer = setTimeout(hideLoader, 1500);
+	const SafetyTimer = setTimeout(HideLoader, 1500);
 
 	if (document.readyState === "complete") {
-		clearTimeout(safetyTimer);
-		hideLoader();
+		clearTimeout(SafetyTimer);
+		HideLoader();
 	} else {
 		window.addEventListener("load", () => {
-			clearTimeout(safetyTimer);
-			hideLoader();
+			clearTimeout(SafetyTimer);
+			HideLoader();
 		}, { once: true });
 	}
 }
@@ -27,28 +33,43 @@ export function initLoader() {
 
 
 // Load Components
-export async function loadComponent(filePath, targetId, { content = {}, afterLoad } = {}) {
-	const response = await fetch(filePath);
-	if (!response.ok) throw new Error(`Could not load ${filePath} (${response.status})`);
+const ComponentCache = new Map();
 
-	const target = document.getElementById(targetId);
-	if (!target) throw new Error(`Could not find the component target #${targetId}`);
+export async function loadComponent(FilePath, TargetId, { Content = {}, AfterLoad } = {}) {
+	const Target = document.getElementById(TargetId);
 
-	target.innerHTML = await response.text();
+	if (!Target) {throw new Error(`[Components] Target #${TargetId} not found`);}
 
-	for (const [selector, data] of Object.entries(content)) {
-		const element = target.querySelector(selector);
-		if (!element) throw new Error(`Could not find ${selector} inside${filePath}`);
+	try {
+		let HTML = ComponentCache.get(FilePath);
 
-		if (typeof data === "object" && data.html) {
-			element.innerHTML = data.html;
-		} else {
-			element.textContent = data;
+		if (HTML === undefined) {
+			const Response = await fetch(FilePath);
+
+			if (!Response.ok) {throw new Error(`${Response.status} ${Response.statusText}`);}
+
+			HTML = await Response.text();
+			ComponentCache.set(FilePath, HTML);
 		}
-	}
 
-	afterLoad?.(target);
-	return target;
+		Target.innerHTML = HTML;
+
+		for (const [Selector, Data] of Object.entries(Content)) {
+			const Element = Target.querySelector(Selector);
+
+			if (!Element) {throw new Error(`Element "${Selector}" not found in ${FilePath}`);}
+
+			if (typeof Data === "object" && Data !== null && "html" in Data) {
+				Element.innerHTML = Data.html;
+			} else {
+				Element.textContent = Data;
+			}
+		}
+
+		await AfterLoad?.(Target);
+
+		return Target;
+	} catch (Error) {console.error(`[Components] Failed to load ${FilePath}:`, Error); throw Error;}
 }
 
 
@@ -70,8 +91,6 @@ export function initEnlargeable() {
 		overlay.appendChild(bigImg);
 		document.body.appendChild(overlay);
 
-		overlay.addEventListener("click", () => {
-			overlay.remove();
-		});
+		overlay.addEventListener("click", () => {overlay.remove();});
 	});
 }
